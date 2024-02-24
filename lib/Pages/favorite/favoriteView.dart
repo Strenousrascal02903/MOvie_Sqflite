@@ -14,7 +14,7 @@ class Favorite extends GetView<FavoriteController> {
 
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.white,
+        foregroundColor: ColorPalette.main,
         backgroundColor: ColorPalette.background,
         title: const Text(
           "Favorite",

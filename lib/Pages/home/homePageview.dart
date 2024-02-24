@@ -11,32 +11,25 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
         backgroundColor: ColorPalette.background,
-        body: Obx(
-          () => controller.isMobileLayout.value
-              ? const MobileLayout()
-              : const TabletLayout(),
-        ),
-        floatingActionButton: Container(
-          margin: const EdgeInsets.only(bottom: 10),
-          child: InkWell(
-            onTap: () {
-              Get.toNamed("/favorite");
-            },
-            child: Container(
-              height: 64,
-              width: 64,
-              decoration: BoxDecoration(
-                color: ColorPalette.carddark,
-                borderRadius: BorderRadius.circular(64),
-              ),
-              child: const Icon(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.toNamed("/favorite");
+              },
+              icon: Icon(
                 Icons.favorite,
-                color: Color(0xff00FFF5),
-                size: 28,
-              ),
-            ),
-          ),
-        ));
+                color: ColorPalette.main,
+              ))
+        ],
+      ),
+      backgroundColor: ColorPalette.background,
+      body: Obx(
+        () => controller.isMobileLayout.value
+            ? const MobileLayout()
+            : const TabletLayout(),
+      ),
+    );
   }
 }

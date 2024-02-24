@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sqflite_favorite/Pages/favorite/favoriteController.dart';
 import 'package:sqflite_favorite/material/color.dart';
@@ -12,6 +13,8 @@ class MobileFavorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.of(context).size.width;
+    final heightScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: ColorPalette.background,
       body: Obx(
@@ -32,37 +35,54 @@ class MobileFavorite extends StatelessWidget {
                         Text(
                           'No Favorite Item',
                           style: TextStyle(
-                              color: ColorPalette.secondary,
+                              color: ColorPalette.main,
                               fontSize: 24,
                               fontWeight: FontWeight.w900),
                         ),
                       ],
                     ),
                   )
-                : ListView.builder(
+                : GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 0.70),
                     padding: const EdgeInsets.only(top: 45, bottom: 110),
                     itemCount: favoriteController.favorites.length,
                     itemBuilder: (context, index) {
                       final data = favoriteController.favorites[index];
                       return Container(
                         decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0.0, 0.1), //(x,y)
+                              blurRadius: 6.0,
+                            ),
+                          ],
                           borderRadius: BorderRadius.circular(20),
-                          color: ColorPalette.carddark,
+                          color: ColorPalette.background,
                         ),
                         margin: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 5),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         child: IntrinsicHeight(
-                          child: Row(
+                          child: Column(
                             children: [
-                              Image.file(
-                                File(data.image),
-                                width: 100,
-                                height: 100,
+                              Expanded(
+                                flex: 2,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(data.image),
+                                    width: widthScreen * 0.3,
+                                    height: heightScreen * 0.14,
+                                  ),
+                                ),
                               ),
                               const SizedBox(width: 10),
                               Expanded(
+                                flex: 1,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 10, right: 10),
@@ -70,12 +90,15 @@ class MobileFavorite extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        data.title,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          data.title,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                       const Spacer(),
@@ -106,7 +129,7 @@ class MobileFavorite extends StatelessWidget {
                                                         "Are you sure to remove this product from your favorite list?",
                                                         style: TextStyle(
                                                           fontSize: 16.0,
-                                                          color: Colors.white,
+                                                          color: Colors.black,
                                                         ),
                                                       ),
                                                     ),
