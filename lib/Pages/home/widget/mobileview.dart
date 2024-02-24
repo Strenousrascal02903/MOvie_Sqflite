@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sqflite_favorite/Pages/favorite/favoriteController.dart';
-import 'package:sqflite_favorite/Pages/home/homePageController.dart';
+
 import 'package:sqflite_favorite/api/movie_api.dart';
 import 'package:sqflite_favorite/material/color.dart';
 import 'package:sqflite_favorite/model/appConstant.dart';
