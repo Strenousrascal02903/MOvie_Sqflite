@@ -8,14 +8,16 @@ class DbHelper {
     var dir = await getDatabasesPath();
     _db = await openDatabase("$dir/$_dbPath",
         onCreate: (Database db, int version) async {
-          await db.execute("""
+      await db.execute("""
       CREATE TABLE Movie (
         id INTEGER PRIMARY KEY,
         title TEXT,
-        image TEXT
+        image TEXT,
+        overview TEXT,
+        release DATE
       );
       """);
-        }, version: 1);
+    }, version: 1);
   }
 
   static Database getDb() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqflite_favorite/Pages/home/homePageController.dart';
 import 'package:sqflite_favorite/Pages/home/widget/mobileview.dart';
 import 'package:sqflite_favorite/Pages/home/widget/tabletview.dart';
@@ -12,19 +13,28 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorPalette.background,
+        backgroundColor: ColorPalette.card,
+        surfaceTintColor: ColorPalette.card,
         actions: [
           IconButton(
               onPressed: () {
-                Get.toNamed("/favorite");
+                Get.toNamed("/search");
               },
               icon: Icon(
-                Icons.favorite,
-                color: ColorPalette.main,
+                Icons.search,
+                color: ColorPalette.white,
+                size: 32,
               ))
         ],
+        title: Text(
+          "Movie App",
+          style: GoogleFonts.ubuntu(
+            color: ColorPalette.white,
+            fontSize: 24,
+          ),
+        ),
       ),
-      backgroundColor: ColorPalette.background,
+      backgroundColor: ColorPalette.card,
       body: Obx(
         () => controller.isMobileLayout.value
             ? const MobileLayout()

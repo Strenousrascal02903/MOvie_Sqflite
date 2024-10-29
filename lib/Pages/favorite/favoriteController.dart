@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -10,7 +9,7 @@ import 'package:sqflite_favorite/db/db_helper.dart';
 import 'package:sqflite_favorite/model/movie_model.dart';
 
 class FavoriteController extends GetxController {
- Database db = DbHelper.getDb();
+  Database db = DbHelper.getDb();
   RxBool isLoading = false.obs;
   RxList<Movie> favorites = <Movie>[].obs;
 
@@ -25,7 +24,7 @@ class FavoriteController extends GetxController {
   }
 
   void tapLike(Movie item) {
-    if(checkFavorite(item.id).value){
+    if (checkFavorite(item.id).value) {
       removeFavorite(item);
     } else {
       addFavorite(item);
@@ -46,6 +45,8 @@ class FavoriteController extends GetxController {
         id: item.id,
         title: item.title,
         image: filePathAndName,
+        overview: item.overview,
+        release: item.release
       );
       await db.insert("Movie", movie.toMap());
     }
@@ -75,5 +76,4 @@ class FavoriteController extends GetxController {
     }
     getFavorite();
   }
-
 }

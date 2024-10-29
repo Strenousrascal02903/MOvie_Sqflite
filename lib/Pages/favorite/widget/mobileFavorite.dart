@@ -45,7 +45,10 @@ class MobileFavorite extends StatelessWidget {
                 : GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.70),
+                            crossAxisSpacing: 1,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.60),
                     padding: const EdgeInsets.only(top: 45, bottom: 110),
                     itemCount: favoriteController.favorites.length,
                     itemBuilder: (context, index) {
@@ -63,7 +66,7 @@ class MobileFavorite extends StatelessWidget {
                           color: ColorPalette.background,
                         ),
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 5),
+                            horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         child: IntrinsicHeight(
@@ -75,8 +78,9 @@ class MobileFavorite extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.file(
                                     File(data.image),
-                                    width: widthScreen * 0.3,
+                                    width: widthScreen * 0.4,
                                     height: heightScreen * 0.14,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -99,14 +103,13 @@ class MobileFavorite extends StatelessWidget {
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      const Spacer(),
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 10),
+                                          margin: const EdgeInsets.only(top: 1),
                                           child: IconButton(
                                             onPressed: () {
                                               AlertDialog alert = AlertDialog(

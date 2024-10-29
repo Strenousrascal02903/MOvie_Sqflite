@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sqflite_favorite/Pages/detail/detailBinding.dart';
+import 'package:sqflite_favorite/Pages/detail/detailView.dart';
 import 'package:sqflite_favorite/Pages/favorite/favoriteBinding.dart';
 import 'package:sqflite_favorite/Pages/favorite/favoriteView.dart';
 import 'package:sqflite_favorite/Pages/home/homePageBinding.dart';
 import 'package:sqflite_favorite/Pages/home/homePageview.dart';
+import 'package:sqflite_favorite/Pages/search/searchBinding.dart';
+import 'package:sqflite_favorite/Pages/search/searchView.dart';
 import 'package:sqflite_favorite/api/movie_api.dart';
 import 'package:sqflite_favorite/db/db_helper.dart';
 
@@ -13,6 +17,7 @@ void main() async {
   await DbHelper.initDb();
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,10 +35,18 @@ class MyApp extends StatelessWidget {
             name: "/home",
             page: () => const HomeView(),
             binding: Homebinding()),
-       GetPage(
+        GetPage(
             name: "/favorite",
             page: () => const Favorite(),
             binding: FavoriteBinding()),
+        GetPage(
+            name: "/detail",
+            page: () => const DetailView(),
+            binding: Detailbinding()),
+        GetPage(
+            name: "/search",
+            page: () => const Searchview(),
+            binding: Searchbinding()),
       ],
     );
   }
